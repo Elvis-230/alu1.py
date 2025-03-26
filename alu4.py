@@ -26,9 +26,9 @@ def ALU4bits(a, b, alu_operation, result, zero):
     # of bit 2 in alu_operation. It is not a signal.
     # We could create regular Signal objects. Then we have to copy 
     # values from alu_operation with a combinational function
-    bnegate = alu_operation(2)      # bit 2 in alu_operation
+    bnegate = alu_operation[2]      # bit 2 in alu_operation
     # like any range in Python, upper bound is open and lower is closed. 
-    operation = alu_operation(2,0)  # bits 1 and 0
+    operation = alu_operation[2,0]  # bits 1 and 0
 
     # Create signals for carryout of 1-bit ALUs.
     # We could use Python list to keep track of similar signalsl. 
@@ -56,7 +56,7 @@ def ALU4bits(a, b, alu_operation, result, zero):
     # a(0) is a shadow signal that follows bit 0 in a
     # a[0] is bit 0's current value and it is not a Signal
 
-    alu1_0 = ALU1bit(a(0), b(0), bnegate, bnegate, operation, result0, c1);
+    alu1_0 = ALU1bit(a(0), b(0), bnegate, bnegate, operation, result0, c1)
     alu1_1 = ALU1bit(a(1), b(1), c1, bnegate, operation, result1, c2)
     alu1_2 = ALU1bit(a(2), b(2), c2, bnegate, operation, result2, c3)
     alu1_3 = ALU1bit(a(3), b(3), c3, bnegate, operation, result3, c4)
